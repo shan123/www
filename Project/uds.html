@@ -1,0 +1,360 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Universal Design Sheet</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/jquery-ui-1.8.css" rel="stylesheet" type="text/css"/>
+   		 <style type="text/css">
+     		 body {
+       	 		padding-top: 60px;
+       	 		padding-bottom: 40px;
+     	 	}
+      
+      
+      		.bgcolor {
+        		background-color: none;
+      		}      
+      
+      		.lightblue {
+      			 background-color: none;
+      		}
+        
+    	</style>
+      <script src="js/dynamic_table_uds_circuit.js"></script>
+      <script src="js/dynamic_table_uds_server.js"></script>
+      <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+      <script type="text/javascript" src="js/bootstrap.js"></script>
+      <script type="text/javascript">
+          $(document).ready(function () {
+              $('.dropdown-toggle').dropdown();
+      });
+      </script>
+    </head>
+    <body>
+
+    	<div class="navbar navbar-inverse navbar-fixed-top">
+    		<div class="navbar-inner">
+    			<div class="container-fluid">
+    				<a class="brand" herf="/">Home</a>
+    				<ul class="nav">
+    					<li><a href="emsform.html">EMS Setup Form</a></li>
+              			<li><a href="ipsheet.html">IP Sheet Generator</a></li>
+              			<li class="active"><a href="uds.html">Universal Design Sheet</a></li>
+                    <li class="dropdown" id="accountmenu">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">ECI Cloud Product Checkout<b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="/ecicloud/ecicloud1.php">Form</a></li>
+                          <li class="divider"></li>
+                          <li><a href="/ecicloud/ecicloud-report.php">Report</a></li>
+                      </ul>
+                  </li>
+              		</ul>
+              	</div>
+            </div>
+        </div>
+
+        <!--[if IE]>
+        <div class="alert">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          This web page works <strong>best</strong> in Chrome!!
+        </div>
+        <![endif]-->
+        <div class="container-fluid">
+        	<form class="form-horizontal" action="uds.php" method="POST">
+        		<legend>Universal Design Sheet</legend>
+        		<div class="row-fluid">
+              <div class="span12">
+                
+                <div class="row-fluid">
+                  <div class="spa12 bgcolor">
+                    <div class="alert alert-info">
+                      Client Information
+                    </div>
+                  </div>
+                </div> 
+
+                <div class="row-fluid">
+                  <div class="span6 bgcolor">
+                    <div class="control-group">
+                      <label class="control-label" for="client"><b>Client Name:</b></label>
+                      <div class="controls">
+                        <input type="text" name="client" placeholder="Client Name">
+                      </div>
+                    </div>
+                  </div><!--/span-->
+                </div><!--/row-->
+
+                <div class="row-fluid">
+                  <div class="span6 bgcolor">
+                    <div class="control-group">
+                      <label class="control-label" for="date"><b>Date:</b></label>
+                      <div class="controls">
+                        <input type="date" name="date" placeholder="Date" style="width:135px;">
+                      </div>
+                    </div>
+                  </div><!--/span-->
+                </div><!--/row-->
+                
+                <div class="row-fluid">
+                  <div class="span6 bgcolor">
+                    <div class="control-group">
+                      <label class="control-label" for="product"><b>ECI Product:</b></label>
+                      <div class="controls">
+                        <select name="product" style="width:150px;">
+                          <option value=""></option>
+                          <option value="EMI">EMI</option>
+                          <option value="EMS">EMS</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div><!--/span-->
+                </div><!--/row-->
+
+                <div class="row-fluid">
+                  <div class="span6 bgcolor">
+                    <div class="control-group">
+                      <label class="control-label" for="engineer"><b>Engineer Name:</b></label>
+                      <div class="controls">
+                        <input type="text" name="engineer" placeholder="Engineer Name">
+                      </div>
+                    </div>
+                  </div><!--/span-->
+                </div><!--/row-->
+
+                <div class="row-fluid">
+                  <div class="spa12 bgcolor">
+                    <div class="alert alert-info">
+                      Circuit Information
+                    </div>
+                  </div>
+                </div>
+
+                <fieldset>
+                <table id="dataTable_circuit" class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <td style="width:10px;"> </td>
+                      <td style="width:180px;"> <b>Client Site(s)</b> </td>
+                      <td style="width:180px;"> <b>Users/Site</b> </td>
+                      <td style="width:160px;"> <b>Site Type (Main/Remote/Colo)</b> </td>
+                      <td style="width:130px;"> <b>ISP's (Verizon/Cogent)</b> </td>
+                      <td style="width:220px;"> <b>Bandwidth (Ver=10/Cogent=100)</b> </td>
+                      <td> <b>Current Remote Access Type</b></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                    <td><input name="chk" style="width:10px"; type="checkbox"></td>
+                    <td><input name="site[]" style="width:150px;" type="text" autocomplete="on"></td>
+                    <td><input name="users[]" style="width:150px;" type="text" autocomplete="on"></td>
+                    <td>
+                      <select name="type[]" style="width:140px">
+                        <option value="main">Main</option>
+                        <option value="remote">Remote</option>
+                        <option value="Colo">Colo</option>
+                      </select>
+                    </td>
+                    <td><input name="isp[]" style="width:100px;" autocomplete="on" type="text"></td>
+                    <td><input name="bandwidth[]" style="width:200px;" autocomplete="on" type="text"></td>
+                    <td><input name="accesstype[]" style="width:200px;" type="text" autocomplete="on"></td>
+                  </tr>
+                  </tbody>
+                </table>
+                <input value="Add Row" onclick="addRowUser('dataTable_circuit')" type="button" class="btn"> 
+                <input value="Delete Row" onclick="deleteRowUser('dataTable_circuit')" type="button" class="btn btn-danger"> <br><br>
+              </fieldset>
+
+              <div class="row-fluid">
+                  <div class="spa12 bgcolor">
+                    <div class="alert alert-info">
+                      Server Information
+                    </div>
+                  </div>
+              </div> 
+
+              <fieldset>
+                <table id="dataTable_server" class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <td style="width:10px;"> </td>
+                      <td style="width:160px;"> <b>Server name</b> </td>
+                      <td style="width:140px;"> <b>Purpose</b> </td>
+                      <td style="width:80px;"> <b>Current OS Version</b> </td>
+                      <td style="width:50px;"> <b>Current Application Version</b> </td>
+                      <td style="width:60px;"> <b>Planned OS Version</b> </td>
+                      <td style="width:60px;"> <b>Planned Application Version</b> </td>
+                      <td style="width:60px;"> <b>Resulting Server/Migration Method</b> </td>
+                      <td style="width:50px;"> <b> Required vCPUs</b> </td>
+                      <td style="width:50px;"> <b> Required vRAM</b> </td>
+                      <td style="width:50px;"> <b> Current Data(GB)</b> </td>
+                      <td style="width:100px;"> <b>Additional Notes</b></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                    <td><input name="chk" style="width:10px"; type="checkbox"></td>
+                    <td><input name="servername[]" style="width:150px;" type="text" autocomplete="on"></td>
+                    <td><input name="purpose[]" style="width:150px;" type="text" autocomplete="on"></td>
+                    <td>
+                      <select name="currentos[]" style="width:80px">
+                        <option value="W2K Std">W2K Std</option>
+                        <option value="W2K Ent">W2K Ent</option>
+                        <option value="W2K3 Std x32">W2K3 Std x32</option>
+                        <option value="W2K3 Std x64">W2K3 Std x64</option>
+                        <option value="W2K3 Ent x32">W2K3 Ent x32</option>
+                        <option value="W2K3 Ent x64">W2K3 Ent x64</option>
+                        <option value="W2K8 Std x32">W2K8 Std x32</option>
+                        <option value="W2K8 Std x64">W2K8 Std x64</option>
+                        <option value="W2K8 Ent x32">W2K8 Ent x32</option>
+                        <option value="W2K8 Ent x64">W2K8 Ent x64</option>
+                        <option value="W2K8 R2 Std">W2K8 R2 Std</option>
+                        <option value="W2K8 R2 Ent">W2K8 R2 Ent</option>
+                        <option value="LINUX">LINUX</option>
+                        <option value="Solaris">Solaris</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select name="currentapp[]" style="width:80px">
+                        <option value=""></option>
+                        <option value="Exchange 2003 Std">Exchange 2003 Std</option>
+                        <option value="Exchange 2003 Ent">Exchange 2003 Ent</option>
+                        <option value="Exchange 2007 Std">Exchange 2007 Std</option>
+                        <option value="Exchange 2007 Ent">Exchange 2007 Ent</option>
+                        <option value="Exchange 2010 Std">Exchange 2010 Std</option>
+                        <option value="Exchange 2010 Ent">Exchange 2010 Ent</option>
+                        <option value="SQL 2000 Std">SQL 2000 Std</option>
+                        <option value="SQL 2000 Ent">SQL 2000 Ent</option>
+                        <option value="SQL 2005 Std">SQL 2005 Std</option>
+                        <option value="SQL 2005 Ent">SQL 2005 Ent</option>
+                        <option value="SQL 2008 Std">SQL 2008 Std</option>
+                        <option value="SQL 2008 Ent">SQL 2008 Ent</option>
+                        <option value="ORACLE">ORACLE</option>
+                        <option value="SharePoint">SharePoint</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select name="plannedos[]" style="width:80px">
+                        <option value="W2K Std">W2K Std</option>
+                        <option value="W2K Ent">W2K Ent</option>
+                        <option value="W2K3 Std x32">W2K3 Std x32</option>
+                        <option value="W2K3 Std x64">W2K3 Std x64</option>
+                        <option value="W2K3 Ent x32">W2K3 Ent x32</option>
+                        <option value="W2K3 Ent x64">W2K3 Ent x64</option>
+                        <option value="W2K8 Std x32">W2K8 Std x32</option>
+                        <option value="W2K8 Std x64">W2K8 Std x64</option>
+                        <option value="W2K8 Ent x32">W2K8 Ent x32</option>
+                        <option value="W2K8 Ent x64">W2K8 Ent x64</option>
+                        <option value="W2K8 R2 Std">W2K8 R2 Std</option>
+                        <option value="W2K8 R2 Ent">W2K8 R2 Ent</option>
+                        <option value="LINUX">LINUX</option>
+                        <option value="Solaris">Solaris</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select name="plannedapp[]" style="width:80px">
+                        <option value=""></option>
+                        <option value="Exchange 2003 Std">Exchange 2003 Std</option>
+                        <option value="Exchange 2003 Ent">Exchange 2003 Ent</option>
+                        <option value="Exchange 2007 Std">Exchange 2007 Std</option>
+                        <option value="Exchange 2007 Ent">Exchange 2007 Ent</option>
+                        <option value="Exchange 2010 Std">Exchange 2010 Std</option>
+                        <option value="Exchange 2010 Ent">Exchange 2010 Ent</option>
+                        <option value="SQL 2000 Std">SQL 2000 Std</option>
+                        <option value="SQL 2000 Ent">SQL 2000 Ent</option>
+                        <option value="SQL 2005 Std">SQL 2005 Std</option>
+                        <option value="SQL 2005 Ent">SQL 2005 Ent</option>
+                        <option value="SQL 2008 Std">SQL 2008 Std</option>
+                        <option value="SQL 2008 Ent">SQL 2008 Ent</option>
+                        <option value="ORACLE">ORACLE</option>
+                        <option value="SharePoint">SharePoint</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select name="migration[]" style="width:80px">
+                        <option value=""></option>
+                        <option value="Files: NAS on SAN">Files: NAS on SAN</option>
+                        <option value="App: Reinstall">App: Reinstall</option>
+                        <option value="Data: Migrate to LUNS">Data: Migrate to LUNS</option>
+                        <option value="Data: Migrate via dump and load">Data: Migrate via dump and load</option>
+                        <option value="Physical: no change">Physical: no change</option>
+                        <option value="Physical: New build(SAN BOOT)">Physical: New build(SAN BOOT)</option>
+                        <option value="Physical: Migrate Data to LUNS">Physical: Migrate Data to LUNS</option>
+                        <option value="Virtual: Move Existing VM">Virtual: Move Existing VM</option>
+                        <option value="Virtual: New Build">Virtual: New Build</option>
+                        <option value="Virtual: P2V">Virtual: P2V</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </td>
+                    <td><input name="cpu[]" style="width:50px;" autocomplete="on" type="text"></td>
+                    <td><input name="ram[]" style="width:50px;" autocomplete="on" type="text"></td>
+                    <td><input name="data[]" style="width:50px;" type="text" autocomplete="on"></td>
+                    <td><input name="notes[]" style="width:100px;" type="text" autocomplete="on"></td>
+                  </tr>
+                  </tbody>
+                </table>
+                <input value="Add Row" onclick="addRowUser('dataTable_server')" type="button" class="btn"> 
+                <input value="Delete Row" onclick="deleteRowUser('dataTable_server')" type="button" class="btn btn-danger"> <br><br>
+              </fieldset>   
+
+              <div class="row-fluid">
+                  <div class="spa12 bgcolor">
+                    <div class="alert alert-info">
+                      Existing Physical Storage
+                    </div>
+                  </div>
+              </div> 
+
+               <fieldset>
+                <table id="dataTable_storage" class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <td style="width:10px;"> </td>
+                      <td style="width:220px;"> <b>Existing Physical Device</b> </td>
+                      <td style="width:210px;"> <b>Manufacturer</b> </td>
+                      <td style="width:200px;"> <b>Type of Virtualization</b> </td>
+                      <td style="width:200px;"> <b>Current Virtualization Version</b> </td>
+                      <td style="width:200px;"> <b>Planned Virtualization Version</b> </td>
+                      <td style="width:180px;"> <b>Location of Device</b> </td>
+                      <td style="width:90px;"> <b>Prod/DR</b></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                    <td><input name="chk" style="width:10px"; type="checkbox"></td>
+                    <td><input name="device[]" style="width:180px;" type="text" autocomplete="on"></td>
+                    <td><input name="manufacturer[]" style="width:180px;" type="text" autocomplete="on"></td>
+                    <td><input name="typev[]" style="width:160px;" type="text" autocomplete="on"></td>
+                    <td><input name="currentvv[]" style="width:160px;" autocomplete="on" type="text"></td>
+                    <td><input name="plannedvv[]" style="width:160px;" autocomplete="on" type="text"></td>
+                    <td><input name="location[]" style="width:150px;" autocomplete="on" type="text"></td>
+                    <td>
+                      <select name="proddr[]" style="width:90px">
+                        <option value="Prod">Prod</option>
+                        <option value="DR">DR</option>
+                      </select>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+                <input value="Add Row" onclick="addRowUser('dataTable_storage')" type="button" class="btn"> 
+                <input value="Delete Row" onclick="deleteRowUser('dataTable_storage')" type="button" class="btn btn-danger"> <br><br>
+              </fieldset>
+
+              </div>
+            </div>
+            <input class="btn btn-primary" value="Submit" type="submit">
+        	</form>
+        </div>
+
+        <footer>
+          <a></a>
+        </footer>
+    </body>
+</html>
+

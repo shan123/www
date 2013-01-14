@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Personnel Action Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      
+      
+      .bgcolor {
+        background-color: none;
+      }      
+      
+      .lightblue {
+       background-color: none;
+      }
+        
+    </style>
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.dropdown-toggle').dropdown();
+    });
+    </script>
+    <script src="js/dynamic_table_ip.js"></script>
+  </head>
+
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container-fluid">
+            <a class="brand" herf="/">Home</a>
+            <ul class="nav">
+              <li><a href="/project/emsform.html">EMS Setup Form</a></li>
+              <li><a href="/project/ipsheet.html">IP Sheet Generator</a></li>
+              <li><a href="/project/uds.html">Universal Design Sheet</a></li>
+              <li class="dropdown" id="accountmenu">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">ECI Cloud Product Checkout<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/ecicloud/ecicloud1.php">Form</a></li>
+                    <li class="divider"></li>
+                    <li class="active"><a href="/ecicloud/ecicloud-report.php">Report</a></li>
+                </ul>
+              </li>
+              <li class="dropdown" id="accountmenu">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">ECI Personnel Action Form<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li class="active"><a href="/project/paf.html">Form</a></li>
+                    <li><a href="/project/paf-report.php">Report</a></li>
+                </ul>
+              </li>
+            </ul>
+           </div>
+        </div>
+      </div>
+
+      <!--[if IE]>
+      <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+          This web page works <strong>best</strong> in Chrome!!
+      </div>
+      <![endif]-->
+    <div class="container-fluid">      
+      <form class="form-horizontal" action="paf.php" method="POST">
+      <legend>Personnel Action Form</legend>
+      <div class="row-fluid">
+        <div class="span10">
+          <div class="row-fluid">
+            <div class="spa12 bgcolor">
+              <div class="alert alert-info">
+                Employee Information
+              </div>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="span6 bgcolor">
+              <div class="control-group">
+                <label class="control-label" for="employee"><b>Employee Name:</b></label>
+                <div class="controls">
+                  <input type="text" name="employee" placeholder="Employee Name" required>
+                </div>
+              </div>
+            </div><!--/span-->
+          </div><!--/row-->
+
+          <div class="row-fluid">
+            <div class="span6 bgcolor">
+              <div class="control-group">
+                <label class="control-label" for="date"><b>Effective Date of Change:</b></label>
+                <div class="controls">
+                  <input type="date" name="dateofchange">
+                </div>
+              </div>
+            </div><!--/span-->
+          </div><!--/row-->
+
+           <div class="row-fluid"> 
+            <div class="span6 bgcolor">
+              <div class="control-group">
+                <label class="control-label" for="req"><b>Will a Job Requisition need to be opened?</b></label>
+                <div class="controls">
+                  <select name="req" style="width:150px;">
+                    <option value=""></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</optin>
+                  </select>
+                <span class="help-block"><p class="text-error">If Yes, please contact Recruiting Dept.</p></span>
+                </div>
+              </div>
+            </div><!--/span-->
+          </div><!--/row-->
+
+          <div class="row-fluid">
+            <div class="span6 bgcolor">
+              <div class="control-group">
+                <label class="control-label" for="reqtype"><b>Type of Action Requested:</b></label>
+                <div class="controls">
+                  <select name="reqtype" style="width:150px;">
+                    <option value=""></option>
+                    <option value="Promotion">Promotion  (upward move)</option>
+                    <option value="Transfer">Transfer (cost center change)</option>
+                    <option value="Termination">Termination (voluntary/involuntary)</option>
+                    <option value="Role Change">Role Change (lateral move)</option>
+                    <option value="Relocation">Relocation</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+            </div><!--/span-->
+          </div><!--/row-->
+
+          <div class="row-fluid">
+            <div class="span12 bgcolor">
+              <div class="row-fluid">
+                <div class="spa12 bgcolor">
+                  <div class="alert alert-info">
+                    Job/Position Change
+                  </div>
+                </div>
+              </div>
+              <fieldset>
+                <table class="table table-condensed">
+                  <thead>
+                    <tr>
+                      <td><b>JOB/POSITION CHANGE</b>   (Fill out <u>all</u> that apply) </td>
+                      <td> <b>FROM</b> </td>
+                      <td> <b>TO</b> </td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><label class="control-label"><b>Job Title</b></label></td>
+                      <td><input name="from1" type="text" value=""></td>
+                      <td><input name="to1" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                      <td><label class="control-label"><b>Manager</b></label></td>
+                      <td><input name="from2" type="text" value=""></td>
+                      <td><input name="to2" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                      <td><label class="control-label"><b>Team Change</b></label></td>
+                      <td><input name="from3" type="text" value=""></td>
+                      <td><input name="to3" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                      <td><label class="control-label"><b>Department Name</b></label></td>
+                      <td><input name="from4" type="text" value=""></td>
+                      <td><input name="to4" type="text" value=""></td>
+                    </tr>
+                     <tr>
+                      <td><label class="control-label"><b>Cost Center Number</b></label></td>
+                      <td><input name="from5" type="text" value=""></td>
+                      <td><input name="to5" type="text" value=""></td>
+                    </tr>
+                     <tr>
+                      <td><label class="control-label"><b>Location</b></label></td>
+                      <td><input name="from6" type="text" value=""></td>
+                      <td><input name="to6" type="text" value=""></td>
+                    </tr>
+                     <tr>
+                      <td><label class="control-label"><b>Status Change</b></label></td>
+                      <td><input name="from7" type="text" value=""></td>
+                      <td><input name="to7" type="text" value=""></td>
+                    </tr>
+                     <tr>
+                      <td><label class="control-label"><b>Scheduled Hours</b></label></td>
+                      <td><input name="from8" type="text" value=""></td>
+                      <td><input name="to8" type="text" value=""></td>
+                    </tr>
+                     <tr>
+                      <td><input name="other1" type="text" placeholder="Other" value=""></td>
+                      <td><input name="from9" type="text" value=""></td>
+                      <td><input name="to9" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p><b>Meal Period Waiver:</b></p>
+                        <select name="meal" style="width:150px;">
+                          <option value=""></option>
+                          <option value="add">ADD</option>
+                          <option value="remove">REMOVE</optin>
+                        </select>
+                      </td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+               
+                <div class="row-fluid"> 
+                  <div class="span10 bgcolor">
+                      <p><b>If the status involves a manager change, please make note of who staff will report to for time approval purposes:</b></p>
+                  </div><!--/span-->
+                </div><!--/row-->
+              
+                <div class="row-fluid"> 
+                  <div class="span8 bgcolor">
+                    <div class="control-group">
+                      <textarea name="note" cols="7" rows="3" value=""></textarea>
+                    </div>
+                  </div><!--/span-->
+                </div><!--/row-->
+              </fieldset>
+              <hr>
+            
+            </div><!--/span-->
+          </div><!--/row-->
+          
+          <div class="row-fluid">
+            <div class="span12 bgcolor">
+              <div class="row-fluid">
+                <div class="spa12 bgcolor">
+                  <div class="alert alert-info">
+                    Pay Rate Change
+                  </div>
+                </div>
+              </div>
+              <fieldset>
+                <table class="table table-condensed">
+                  <thead>
+                    <tr>
+                      <td><b>PAY RATE CHANGE</b></td>
+                      <td> <b>FROM</b> </td>
+                      <td> <b>TO</b> </td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><label class="control-label"><b>Merit (Salary/Hourly Rate)</b></label></td>
+                      <td><input name="from10" type="text" value=""></td>
+                      <td><input name="to10" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                      <td><label class="control-label"><b>Pormotion (Salary/Hourly Rate)</b></label></td>
+                      <td><input name="from11" type="text" value=""></td>
+                      <td><input name="to11" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                      <td><label class="control-label"><b>Salary Adjustment (Salary/Hourly Rate)</b></label></td>
+                      <td><input name="from12" type="text" value=""></td>
+                      <td><input name="to12" type="text" value=""></td>
+                    </tr>
+                     <tr>
+                      <td><input name="other2" type="text" placeholder="Other" value=""></td>
+                      <td><input name="from13" type="text" value=""></td>
+                      <td><input name="to13" type="text" value=""></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </fieldset>
+              <hr>
+            </div><!--/span-->
+          </div><!--/row-->
+
+
+          <div class="row-fluid">
+            <div class="spa12 bgcolor">
+              <div class="alert alert-info">
+                COMMENTS
+              </div>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span8 bgcolor">
+              <textarea name="comment" cols="8" rows="3" value=""></textarea>
+            </div>
+          </div>
+
+        </div><!--/span--> 
+      </div><!--/row-->
+      <br><br>
+      <input class="btn btn-primary" value="Submit" type="submit">
+      </form>
+
+    <hr>
+
+      <footer>
+      </footer>
+
+    </div><!--/.fluid-container-->
+    
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>

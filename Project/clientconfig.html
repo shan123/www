@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ECI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/> -->
+    <link href="css/jquery-ui-1.8.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      
+      
+      .bgcolor {
+        background-color: none;
+      }      
+      
+      .lightblue {
+       background-color: none;
+      }
+        
+    </style>
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Home</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="#">EMS Setup Form</a></li>
+              <li><a href="ipsheet.html">IP Sheet Generator</a></li>
+              <li class="active"><a href="#">Client Configuration</a></li>
+              <li><a href="#contact">For Future Use</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="container-fluid">      
+      <form class="form-horizontal" action="emsform.php" method="POST">
+      <legend>Client Configuration Form</legend>
+      <div class="row-fluid">
+        <div class="span10">
+          <div class="row-fluid">
+            <div class="spa12 bgcolor">
+              <div class="alert alert-info">
+                DNS Hosting Information
+              </div>
+            </div>
+          </div>  
+
+          <div id="accordion">
+            <h3><a href="#">Client Information</a></h3>
+            <div>
+              <div class="row-fluid">
+                <div class="span6 bgcolor">
+                  <div class="control-group">
+                    <label class="control-label" for="domain"><b>Client Name:</b></label>
+                    <div class="controls">
+                      <input type="text" name="domain1" placeholder="Client">
+                    </div>
+                  </div>
+                </div><!--/span-->
+              </div><!--/row-->
+              <div class="row-fluid">
+                <div class="span6 bgcolor">
+                  <div class="control-group">
+                    <label class="control-label" for="region"><b>Region:</b></label>
+                    <div class="controls">
+                      <select name="region" style="width:150px;">
+                        <option value="New York">New York</option>
+                        <option value="Boston">Boston</option>
+                        <option value="chicago">Chicago</option>
+                        <option value="Connecticut">Connecticut</option>
+                        <option value="Minnesota">Minnesota</option>
+                        <option value="Los Angeles">Los Angeles</option>
+                        <option value="San Francisco">San Francisco</option>
+                        <option value="Texas">Texas</option>
+                        <option value="London">London</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="Hong Kong">Hong Kong</option>
+                      </select>
+                    </div>
+                  </div>
+                </div><!--/span-->
+              </div><!--/row-->
+              <div class="row-fluid">
+                <div class="span6 bgcolor">
+                  <div class="control-group">
+                    <label class="control-label" for="dregistrar">Clint CTM:</label>
+                    <div class="controls">
+                      <input type="text" name="dregistrar1" placeholder="">
+                    </div>
+                  </div>
+                </div><!--/span-->
+                <div class="span6 bgcolor">
+                  <div class="control-group">
+                    <label class="control-label" for="region"><b>Team:</b></label>
+                    <div class="controls">
+                      <select name="region" style="width:150px;">
+                        <option value="New York">New York</option>
+                        <option value="Boston">Boston</option>
+                        <option value="chicago">Chicago</option>
+                        <option value="Connecticut">Connecticut</option>
+                        <option value="Minnesota">Minnesota</option>
+                        <option value="Los Angeles">Los Angeles</option>
+                        <option value="San Francisco">San Francisco</option>
+                        <option value="Texas">Texas</option>
+                        <option value="London">London</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="Hong Kong">Hong Kong</option>
+                      </select>
+                    </div>
+                  </div>
+                </div><!--/span-->
+              </div><!--/row-->
+              <div class="row-fluid">
+                <div class="span6 bgcolor">
+                  <div class="control-group">
+                    <label class="control-label" for="region"><b>Client Type:</b></label>
+                    <div class="controls">
+                      <select name="region" style="width:150px;">
+                        <option value="New York">New York</option>
+                        <option value="Boston">Boston</option>
+                        <option value="chicago">Chicago</option>
+                        <option value="Connecticut">Connecticut</option>
+                        <option value="Minnesota">Minnesota</option>
+                        <option value="Los Angeles">Los Angeles</option>
+                        <option value="San Francisco">San Francisco</option>
+                        <option value="Texas">Texas</option>
+                        <option value="London">London</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="Hong Kong">Hong Kong</option>
+                      </select>
+                    </div>
+                  </div>
+                </div><!--/span-->
+                <div class="span6 bgcolor">
+                  <div class="control-group">
+                    <label class="control-label" for="region"><b>OnSite IT:</b></label>
+                    <div class="controls">
+                      <select name="region" style="width:150px;">
+                        <option value="Internal IT">Internal IT</option>
+                        <option value="Fulltime Engineer">Fulltime Engineer</option>
+                        <option value="Internal IT and ECI">Internal IT and ECI</option>
+                      </select>
+                    </div>
+                  </div>
+                </div><!--/span-->
+              </div><!--/row-->
+              <div class="row-fluid">
+                <div class="span6 bgcolor">
+                  <div class="control-group">
+                    <label class="control-label" for="dnsserver">DNS Server:</label>
+                    <div class="controls">
+                      <input type="text" name="dnsserver1" placeholder="">
+                    </div>
+                  </div>
+                </div><!--/span-->
+              </div><!--/row-->
+            </div>
+
+            <h3><a href="#">DNS</a></h3>
+            <div>
+              <div class="row-fluid">
+                <div class="span6 bgcolor">
+                  <div class="control-group">
+                    <label class="control-label" for="domain2">Domain Name(s):</label>
+                    <div class="controls">
+                      <input type="text" name="domain2" placeholder="clientdomain.com">
+                    </div>
+                  </div>
+                </div><!--/span-->
+                <div class="span6 bgcolor">
+                  <div class="control-group">
+                    <label class="control-label" for="rusername2">Registrar User Name:</label>
+                    <div class="controls">
+                      <input type="text" name="rusername2" placeholder="Go Daddy">
+                    </div>
+                  </div>
+                </div><!--/span-->
+              </div><!--/row-->
+              <div class="row-fluid">
+                <div class="span6 bgcolor">
+                  <div class="control-group">
+                    <label class="control-label" for="dregistrar2">Domain Registrar:</label>
+                    <div class="controls">
+                      <input type="text" name="dregistrar2" placeholder="">
+                    </div>
+                  </div>
+                </div><!--/span-->
+                <div class="span6 bgcolor">
+                  <div class="control-group">
+                    <label class="control-label" for="dnsusername2">DNS Provider User Name:</label>
+                    <div class="controls">
+                      <input type="text" name="dnsusername2" placeholder="">
+                    </div>
+                  </div>
+                </div><!--/span-->
+              </div><!--/row-->
+              <div class="row-fluid">
+                <div class="span6 bgcolor">
+                  <div class="control-group">
+                    <label class="control-label" for="dnsprovider2">DNS Provider:</label>
+                    <div class="controls">
+                      <input type="text" name="dnsprovider2" placeholder="">
+                    </div>
+                  </div>
+                </div><!--/span-->
+              </div><!--/row-->
+              <div class="row-fluid">
+                <div class="span6 bgcolor">
+                  <div class="control-group">
+                    <label class="control-label" for="dnsserver2">DNS Server:</label>
+                    <div class="controls">
+                      <input type="text" name="dnsserver2" placeholder="">
+                    </div>
+                  </div>
+                </div><!--/span-->
+              </div><!--/row-->
+            </div>
+
+          <h3><a href="#">Windows Infrastructure</a></h3>
+          <div>
+            <div class="row-fluid">
+              <div class="span6 bgcolor">
+                <div class="control-group">
+                  <label class="control-label" for="domain3">Domain Name(s):</label>
+                  <div class="controls">
+                    <input type="text" name="domain3" placeholder="clientdomain.com">
+                  </div>
+                </div>
+              </div><!--/span-->
+              <div class="span6 bgcolor">
+                <div class="control-group">
+                  <label class="control-label" for="rusername3">Registrar User Name:</label>
+                  <div class="controls">
+                    <input type="text" name="rusername3" placeholder="Go Daddy">
+                  </div>
+                </div>
+              </div><!--/span-->
+            </div><!--/row-->
+            <div class="row-fluid">
+              <div class="span6 bgcolor">
+                <div class="control-group">
+                  <label class="control-label" for="dregistrar3">Domain Registrar:</label>
+                  <div class="controls">
+                    <input type="text" name="dregistrar3" placeholder="">
+                  </div>
+                </div>
+              </div><!--/span-->
+              <div class="span6 bgcolor">
+                <div class="control-group">
+                  <label class="control-label" for="dnsusername3">DNS Provider User Name:</label>
+                  <div class="controls">
+                    <input type="text" name="dnsusername3" placeholder="">
+                  </div>
+                </div>
+              </div><!--/span-->
+            </div><!--/row-->
+            <div class="row-fluid">
+              <div class="span6 bgcolor">
+                <div class="control-group">
+                  <label class="control-label" for="dnsprovider3">DNS Provider:</label>
+                  <div class="controls">
+                    <input type="text" name="dnsprovider3" placeholder="">
+                  </div>
+                </div>
+              </div><!--/span-->
+            </div><!--/row-->
+            <div class="row-fluid">
+              <div class="span6 bgcolor">
+                <div class="control-group">
+                  <label class="control-label" for="dnsserver3">DNS Server:</label>
+                  <div class="controls">
+                    <input type="text" name="dnsserver3" placeholder="">
+                  </div>
+                </div>
+              </div><!--/span-->
+            </div><!--/row-->
+          </div>
+        </div>
+
+        <hr>
+
+          <div class="spa12 bgcolor">
+            <div class="alert alert-info">
+                User Account Setup Information
+            </div>
+          </div>
+          
+          <fieldset>
+            <table class="table">
+              <thead>
+                <tr>
+                  <td style="width:10px;"> </td>
+                  <td style="width:180px;"> <b>Full Name</b> </td>
+                  <td style="width:90px;"> <b>Mobile</b> </td>
+                  <td style="width:80px;"> <b>Other</b> </td>
+                  <td style="width:100px;"> <b>Login</b> </td>
+                  <td style="width:210px;"> <b>Primary Address</b> </td>
+                  <td> <b>Aliased Addresses</b></td>
+                </tr>
+              </thead>
+            </table>
+            <table id="dataTable" class="table">
+              <tbody>
+                <tr>
+                <td><input name="chk" style="width:10px"; type="checkbox"></td>
+                <td><input name="name[]" style="width:150px;" type="text" autocomplete="on" placeholder="Name"></td>
+                <td><input name="mobile[]" style="width:70px;" type="text" autocomplete="on" placeholder="iPhone"></td>
+                <td><input name="other[]" style="width:60px;" type="text" autocomplete="on" placeholder="Other"></td>
+                <td><input name="login[]" style="width:80px;" autocomplete="on" placeholder="login" type="text"></td>
+                <td><input name="paddress[]" style="width:180px;" autocomplete="on" type="text"></td>
+                <td><input name="aaddress[]" style="width:200px;" type="text" autocomplete="on"></td>
+              </tr>
+              </tbody>
+            </table>
+            <input value="Add Row" onclick="addRowUser('dataTable')" type="button" class="btn"> 
+            <input value="Delete Row" onclick="deleteRowUser('dataTable')" type="button" class="btn btn-danger"> <br><br>
+
+          </fieldset>                        
+        </div><!--/span-->      
+      </div><!--/row-->
+      <input class="btn btn-primary" value="Submit" type="submit">
+      </form>
+
+      <hr>
+
+      <footer>
+        <a>Created by Adeel Ashfaq</a>
+      </footer>
+
+    </div><!--/.fluid-container-->
+    
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/dynamic_table_ems_user.js"></script>
+    <script src="js/jquery.min-1.5.js"></script>
+    <script src="js/jquery.min-1.8.js"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script> -->
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script> -->
+    <script>
+      $(document).ready(function() {
+        $("#accordion").accordion({ animated: 'bounceslide' });
+      });
+  </script>
+  </body>
+</html>

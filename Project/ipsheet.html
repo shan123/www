@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>IP Sheet Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      
+      
+      .bgcolor {
+        background-color: none;
+      }      
+      
+      .lightblue {
+       background-color: none;
+      }
+        
+    </style>
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.dropdown-toggle').dropdown();
+    });
+    </script>
+    <script src="js/dynamic_table_ip.js"></script>
+  </head>
+
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container-fluid">
+            <a class="brand" herf="/">Home</a>
+            <ul class="nav">
+              <li><a href="emsform.html">EMS Setup Form</a></li>
+                    <li class="active"><a href="ipsheet.html">IP Sheet Generator</a></li>
+                    <li><a href="uds.html">Universal Design Sheet</a></li>
+                    <li class="dropdown" id="accountmenu">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">ECI Cloud Product Checkout<b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="/ecicloud/ecicloud1.php">Form</a></li>
+                          <li class="divider"></li>
+                          <li><a href="/ecicloud/ecicloud-report.php">Report</a></li>
+                      </ul>
+                  </li>
+                  </ul>
+                </div>
+            </div>
+        </div>
+
+      <!--[if IE]>
+      <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+          This web page works <strong>best</strong> in Chrome!!
+      </div>
+      <![endif]-->
+    <div class="container-fluid">      
+      <form class="form-horizontal" action="fetchrequest.php" method="POST">
+      <legend>IP Sheet Generator</legend>
+      <div class="row-fluid">
+        <div class="span8">
+          <div class="row-fluid">
+            <div class="span6 bgcolor">
+              <div class="control-group">
+                <label class="control-label" for="client"><b>Client Name:</b></label>
+                <div class="controls">
+                  <input type="text" name="client" placeholder="Client Name" required>
+                </div>
+              </div>
+            </div><!--/span-->
+          </div><!--/row-->
+          <div class="row-fluid">
+            <div class="span6 bgcolor">
+              <div class="control-group">
+                <label class="control-label" for="region"><b>Region:</b></label>
+                <div class="controls">
+                  <select name="region" style="width:150px;">
+                    <option value="New York">New York</option>
+                    <option value="Boston">Boston</option>
+                    <option value="chicago">Chicago</option>
+                    <option value="Connecticut">Connecticut</option>
+                    <option value="Minnesota">Minnesota</option>
+                    <option value="Los Angeles">Los Angeles</option>
+                    <option value="San Francisco">San Francisco</option>
+                    <option value="Texas">Texas</option>
+                    <option value="London">London</option>
+                    <option value="Singapore">Singapore</option>
+                    <option value="Hong Kong">Hong Kong</option>
+                  </select>
+                </div>
+              </div>
+            </div><!--/span-->
+          </div><!--/row-->
+          
+
+          <fieldset>
+            <table class="table">
+              <thead>
+                <tr>
+                  <td style="width:20px;"> </td>
+                  <td style="width:220px;"> <b>Tab Name</b> </td>
+                  <td style="width:220px;"> <b>IP Address</b> </td>
+                  <td style="width:150px;"> <b>Subnet Mask</b> </td>
+                  <td></td>
+                </tr>
+              </thead>
+            </table>
+            <table id="dataTable" class="table">
+              <tbody>
+                <tr>
+                <td style="width:10px;"><input name="chk" type="checkbox"></td>
+                <td style="width:150px;"><input name="tab[]" type="text" autocomplete="on" required placeholder="LAN"></td>
+                <td style="width:150px;"><input name="ip[]" type="text" autocomplete="on" required pattern = "((^|\.)((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]?\d))){4}$" placeholder="10.10.50.0"></td>
+                <td>
+                  <select name="subnet[]" style="width:120px;">
+                    <option value="22">22</option>
+                    <option selected value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                  </select>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <p class="text-error">**Only use the checkbox when deleting a row</p>
+            <input value="Add Row" onclick="addRow('dataTable')" type="button" class="btn"> 
+            <input value="Delete Row" onclick="deleteRow('dataTable')" type="button" class="btn btn-danger"> <br><br>
+          </fieldset>                        
+        </div><!--/span--> 
+        <ul class="thumbnails">
+          <li class="span3">
+            <div class="thumbnail">
+              <h3><u>Reporting</u></h3>
+              <p>Head over to the reporting page if you would like to query the IP Sheet database. </p>
+              <p><a href="ipsheet-report.php" class="btn btn-success">Go</a></p>
+            </div>
+        </li>
+      </ul>  
+
+      </div><!--/row-->
+      <input class="btn btn-primary" value="Submit" type="submit">
+      </form>
+
+    <hr>
+
+      <footer>
+        <a>Created by Adeel Ashfaq</a>
+      </footer>
+
+    </div><!--/.fluid-container-->
+    
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>

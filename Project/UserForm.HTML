@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+    <title>Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      
+      
+      .bgcolor {
+        background-color: none;
+      }      
+      
+      .lightblue {
+       background-color: none;
+      }
+        
+    </style>
+  </head>
+
+  <body>
+   <div class="container-fluid">
+      <form class "form-horizontal" action="sendform.php" method="post">
+         <legend>Form</legend>
+         <fieldset>
+         <!--[if lt IE 7 ]><ul class="ie6"><![endif]-->
+         <!--[if IE 7 ]><ul class="ie7"><![endif]-->
+         <!--[if IE 8 ]><ul class="ie8"><![endif]-->
+         <!--[if IE 9 ]><ul class="ie9"><![endif]-->
+         <!--[if (gt IE 9)|!(IE)]><!--><ul><!--<![endif]-->
+            <li class="alpha required">
+               <label for="first_name">First Name</label>
+               <input type="text" name="first_name" id="first_name" />
+            </li>
+            <li class="alpha required">
+               <label for="last_name">Last Name</label>
+               <input type="text" name="last_name" id="last_name" />
+            </li>
+            <hr>
+            <li>
+               <ul>
+                  <li><label><b>Entity</b></label></li>
+                  <li><label><input type="radio" name="entity" value="Northwood Investors" checked >Northwood Investors</label></li>
+                  <li><label><input type="radio" name="entity" value="Northwood Hospitality" >Northwood Hospitality</label></li>
+                  <li><label><input type="radio" name="entity" value="Northwood Retail" >Northwood Retail</label></li>
+               </ul>
+            </li>
+            <li>
+               <ul>
+                  <li><label><b>Does this User Require Archiving for Compliance?</b?</label></li>
+                  <li><label><input type="radio" name="does-this-user-require-archiving-for-compliance" value="Yes" checked >Yes</label></li>
+                  <li><label><input type="radio" name="does-this-user-require-archiving-for-compliance" value="No" >No</label></li>
+               </ul>
+            </li>
+            <li>
+               <ul>
+                  <li><label><b>Office Location</b></label></li>
+                  <li><label><input type="radio" name="office_location" value="NY Office" >NY Office</label></li>
+                  <li><label><input type="radio" name="office_location" value="Texas Office" >Texas Office</label></li>
+                  <li><label><input type="radio" name="office_location" value="Cheeca" checked >Cheeca</label></li>
+                  <li><label><input type="radio" name="office_location" value="NY Palace" >NY Palace</label></li>
+                  <li><label><input type="radio" name="office_location" value="Raddison Boston" >Raddison Boston</label></li>
+                  <li><label><input type="radio" name="office_location" value="Southlands" >Southlands</label></li>
+               </ul>
+            </li>
+            <li>
+               <ul>
+                  <li><label><b>Mapped Drives (Subject to Management Approval)</b></label></li>
+                  <li><label><input type="checkbox" name="mapped_drives[]" value="G" checked >G</label></li>
+                  <li><label><input type="checkbox" name="mapped_drives[]" value="H" >H</label></li>
+                  <li><label><input type="checkbox" name="mapped_drives[]" value="I" >I</label></li>
+                  <li><label><input type="checkbox" name="mapped_drives[]" value="M" >M</label></li>
+                  <li><label><input type="checkbox" name="mapped_drives[]" value="O" >O</label></li>
+                  <li><label><input type="checkbox" name="mapped_drives[]" value="P" >P</label></li>
+                  <li><label><input type="checkbox" name="mapped_drives[]" value="Q" >Q</label></li>
+                  <li><label><input type="checkbox" name="mapped_drives[]" value="S" >S</label></li>
+                  <li><label><input type="checkbox" name="mapped_drives[]" value="T" >T</label></li>
+                  <li><label><input type="checkbox" name="mapped_drives[]" value="V" >V</label></li>
+               </ul>
+            </li>
+            <li>
+               <ul>
+                  <li><label><b>Published Citrix Applications</b></label></li>
+                  <li><label><input type="checkbox" name="citrix_applications[]" value="Adobe Acrobat" checked >Adobe Acrobat</label></li>
+                  <li><label><input type="checkbox" name="citrix_applications[]" value="Office" >Office</label></li>
+                  <li><label><input type="checkbox" name="citrix_applications[]" value="Crystal Reports" >Crystal Reports</label></li>
+                  <li><label><input type="checkbox" name="citrix_applications[]" value="Investran" >Investran</label></li>
+                  <li><label><input type="checkbox" name="citrix_applications[]" value="Dynamics (Citrix Access Required)" >Dynamics (Citrix Access Required)</label></li>
+                  <li><label><input type="checkbox" name="citrix_applications[]" value="Profitsword (VPN Access Required)" >Profitsword (VPN Access Required)</label></li>
+                  <li><label><input type="checkbox" name="citrix_applications[]" value="QuickBooks" >QuickBooks</label></li>
+               </ul>
+            </li>
+         </fieldset>
+         <input class="btn btn-primary" type="submit" value="Send" />
+         </ul>
+      </form>
+   </div>
+   </body>
+</html>
