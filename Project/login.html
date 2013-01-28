@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>EMS Projects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      
+      
+      .bgcolor {
+        background-color: none;
+      }      
+      
+      .lightblue {
+       background-color: none;
+      }
+        
+    </style>
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.dropdown-toggle').dropdown();
+    });
+    </script>
+    <script src="js/dynamic_table_ip.js"></script>
+  </head>
+
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container-fluid">
+            <a class="brand" herf="/">Home</a>
+            <ul class="nav">
+            </ul>
+          </div>
+        </div>
+    </div>
+
+      <!--[if IE]>
+      <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+          This web page works <strong>best</strong> in Chrome!!
+      </div>
+      <![endif]-->
+    <div class="container-fluid">
+      <div class="span6 offset4">
+        <div class="well">    
+          <form class="form-horizontal" action="checklogin.php" method="POST">
+            <div class="control-group">
+              <label class="control-label" for="username">Username</label>
+              <div class="controls">
+                <input type="text" name="username" placeholder="Username" required>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="password">Password</label>
+              <div class="controls">
+                <input type="password" name="password" placeholder="Password" required>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+                <button type="submit" class="btn">Sign in</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <footer>
+        <a></a>
+      </footer>
+
+    </div><!--/.fluid-container-->
+    
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>

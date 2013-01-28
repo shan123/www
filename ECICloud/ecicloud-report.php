@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>IP Sheet Reporting</title>
+		<title>Cloud Products Reporting</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="js/instantedit.js"></script>
 		<link href="css/bootstrap.css" rel="stylesheet">
@@ -136,34 +136,38 @@
           // Connect to MSSQL
           $link = mssql_connect($server, "splareporting", "splareporting");
 
-          //Select the database
+          // Select the database
           if (!$link || !mssql_select_db('ECI_SB', $link)) {
               die('Unable to connect or select database!');
           }
-
+          // If the user didn't select anything
           if ($gpid == "" AND $eciproducts =="") {
-            $query1 = "SELECT DISTINCT gpid, productId, product, qty, submitter, chkDate FROM CLOUD_splaclient, CLOUD_splaproducts, CLOUD_splacheckout WHERE CLOUD_splaclient.clientId = CLOUD_splaproducts.clientId AND CLOUD_splaclient.clientId = CLOUD_splacheckout.clientId;
-";
+            $query1 = "SELECT DISTINCT gpid, productId, product, SerialNumber, qty 
+                        FROM CLOUD_splaclient, CLOUD_splaproducts, CLOUD_splacheckout
+                        WHERE CLOUD_splaclient.clientId = CLOUD_splacheckout.clientId
+                        AND CLOUD_splacheckout.checkoutId = CLOUD_splaproducts.checkoutId;";
             $result = mssql_query($query1, $link) or die ('Unable to run query');
           }
+          // If the user selected gpid
           if ($gpid != ""){
-            $query1 = "SELECT DISTINCT gpid, productId, product, qty, submitter, chkDate FROM CLOUD_splaclient, CLOUD_splaproducts, CLOUD_splacheckout WHERE gpid = '$gpid' AND CLOUD_splaclient.clientId = CLOUD_splaproducts.clientId AND CLOUD_splaclient.clientId = CLOUD_splacheckout.clientId;
-";
+            $query1 = "SELECT DISTINCT gpid, productId, product, SerialNumber, qty 
+                        FROM CLOUD_splaclient, CLOUD_splaproducts, CLOUD_splacheckout
+                        WHERE gpid = '$gpid' AND CLOUD_splaclient.clientId = CLOUD_splacheckout.clientId
+                        AND CLOUD_splacheckout.checkoutId = CLOUD_splaproducts.checkoutId;";
             $result = mssql_query($query1, $link);
           }
 
           if($eciproducts == ""){
             echo "<fieldset>";
-            echo "<div class=\"span12\">";
+            echo "<div class=\"span10\">";
             echo "<table class=\"table table-striped table-bordered\">";
             echo "<thead>";
             echo "<tr>";
             echo "<td> <b>GPID</b> </td>";
             echo "<td> <b>Eze Products</b> </td>";
             echo "<td> <b>Other Products</b> </td>";
+            echo "<td> <b>Serial Number</b> </td>";
             echo "<td> <b>Quantity</td>";
-            echo "<td> <b>Submitter Name</td>";
-            echo "<td> <b>Date</td>";
             echo "</tr>";
             echo "</thead>";
             echo "<tbody>";
@@ -178,7 +182,6 @@
               echo "<td>"   .   $row[2]   .   "</td>";
               echo "<td>"   .   $row[3]   .   "</td>";
               echo "<td>"   .   $row[4]   .   "</td>";
-              echo "<td>"   .   $row[5]   .   "</td>";
               echo "</tr>";
             }
 
@@ -195,21 +198,23 @@
             $query = "SELECT gpid FROM CLOUD_ContractedTiles WHERE Product = '$eciproducts'";
             $result = mssql_query($query, $link);
             echo "<fieldset>";
-            echo "<div class=\"span12\">";
+            echo "<div class=\"span10\">";
             echo "<table class=\"table table-striped table-bordered\">";
             echo "<thead>";
             echo "<tr>";
             echo "<td> <b>GPID</b> </td>";
             echo "<td> <b>Eze Products</b> </td>";
             echo "<td> <b>Other Products</b> </td>";
+            echo "<td> <b>Serial Number</b> </td>";
             echo "<td> <b>Quantity</td>";
-            echo "<td> <b>Submitter Name</td>";
-            echo "<td> <b>Date</td>";
             echo "</tr>";
             echo "</thead>";
             echo "<tbody>";
             while($row = mssql_fetch_array($result)) {
-              $query1 = "SELECT DISTINCT gpid, productId, product, qty, submitter, chkDate FROM CLOUD_splaclient, CLOUD_splaproducts, CLOUD_splacheckout WHERE gpid = '$row[0]' AND CLOUD_splaclient.clientId = CLOUD_splaproducts.clientId AND CLOUD_splaclient.clientId = CLOUD_splacheckout.clientId";
+              $query1 = "SELECT DISTINCT gpid, productId, product, SerialNumber, qty 
+                          FROM CLOUD_splaclient, CLOUD_splaproducts, CLOUD_splacheckout
+                          WHERE gpid = '$row[0]' AND CLOUD_splaclient.clientId = CLOUD_splacheckout.clientId
+                          AND CLOUD_splacheckout.checkoutId = CLOUD_splaproducts.checkoutId";
               $result1 = mssql_query($query1, $link);
               while($row1 = mssql_fetch_array($result1)){
                 echo "<tr>";
@@ -218,7 +223,6 @@
                 echo "<td>"   .   $row1[2]   .   "</td>";
                 echo "<td>"   .   $row1[3]   .   "</td>";
                 echo "<td>"   .   $row1[4]   .   "</td>";
-                echo "<td>"   .   $row1[5]   .   "</td>";
                 echo "</tr>";
               }
             }

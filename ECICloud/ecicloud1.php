@@ -66,6 +66,7 @@
           This web page works <strong>best</strong> in Chrome!!
       </div>
       <![endif]-->
+
     <div class="container-fluid">      
       <form class="form-horizontal" action="ecicloud.php" method="POST">
       <legend>ECI Cloud Product Checkout</legend>
@@ -89,8 +90,8 @@
                         //Select the database
                         if (!$link || !mssql_select_db('ECI_SB', $link)) {
                             die('Unable to connect or select database!');
-                        }
-                        $query1 = "SELECT distinct(gpid) from CLOUD_ResourcePools ORDER BY gpid ASC";
+                        }             
+                        $query1 = "SELECT distinct(gpid) FROM CLOUD_ResourcePools ORDER BY gpid ASC";
                         $result = mssql_query($query1) or die ('Unable to run query');
                         $gpid = $_GET['gpid'];
                         while($row = mssql_fetch_assoc($result)) {
@@ -112,7 +113,7 @@
                         if (!$link || !mssql_select_db('ECI_SB', $link)) {
                             die('Unable to connect or select database!');
                         }
-                        $query1 = "SELECT distinct(gpid) from CLOUD_ResourcePools ORDER BY gpid ASC";
+                        $query1 = "SELECT distinct(gpid) FROM CLOUD_ResourcePools ORDER BY gpid ASC";
                         $result = mssql_query($query1) or die ('Unable to run query');
                         while($row = mssql_fetch_assoc($result)) {
                           echo  "<option value=".$row['gpid'].">".$row['gpid']."</option>";
@@ -123,6 +124,78 @@
                       }
                       ?>
                   </select>
+                </div>
+              </div>
+            </div><!--/span-->
+          </div><!--/row-->
+          
+          <div class="row-fluid">
+            <div class="span6 bgcolor">
+              <div class="control-group">
+                <label class="control-label" for="clientname"><b>Client Name:</b></label>
+                <div class="controls">
+                    <?php
+                    if(isset($_GET['gpid'])){
+                      $server = 'CONNECTDB';
+
+                      // Connect to MSSQL
+                      $link = mssql_connect($server, "splareporting", "splareporting");
+
+                      //Select the database
+                      if (!$link || !mssql_select_db('ECI_SB', $link)) {
+                          die('Unable to connect or select database!');
+                      }
+                      $gpid = $_GET['gpid'];
+                      // get the name of the client 
+                      $query1 = "SELECT max(cwwebapp_eci.dbo.company.Company_Name) AS clientname
+                                  FROM ECI_SB.dbo.CLOUD_ResourcePools 
+                                  LEFT JOIN cwwebapp_eci.dbo.company ON cwwebapp_eci.dbo.company.Account_Nbr=CLOUD_ResourcePools.gpid
+                                  WHERE gpid = '$gpid'";
+                      $result = mssql_query($query1) or die ('Unable to run query');
+                      while($row = mssql_fetch_array($result)) {
+                        echo "<p>";
+                        echo  $row[0];
+                        echo "</p>";
+                        echo "<input type=\"hidden\" value=\"$row[0]\" name=\"clientname\">";
+                      }
+                      mssql_free_result($result);
+                      mssql_close($link);
+                    }
+                    ?>
+                </div>
+              </div>
+            </div><!--/span-->
+          </div><!--/row-->
+
+          <div class="row-fluid"> 
+            <div class="span6 bgcolor">
+              <div class="control-group">
+                <label class="control-label" for="ezeproducts"><b>ECI Product Offerings:</b></label>
+                <div class="controls">
+                  <?php
+                    if(isset($_GET['gpid'])){
+                      $server = 'CONNECTDB';
+
+                      // Connect to MSSQL
+                      $link = mssql_connect($server, "splareporting", "splareporting");
+
+                      //Select the database
+                      if (!$link || !mssql_select_db('ECI_SB', $link)) {
+                          die('Unable to connect or select database!');
+                      }
+                      $gpid = $_GET['gpid'];
+                      $query1 = "SELECT Product FROM CLOUD_ContractedTiles WHERE gpid = '$gpid'";
+                      $result = mssql_query($query1) or die ('Unable to run query');
+                      while($row = mssql_fetch_array($result)) {
+                        echo "<p>";
+                        echo  $row[0];
+                        echo "</p>";
+                        echo "<input type=\"hidden\" value=\"$row[0]\" name=\"ezeproducts\">";
+                      }
+                      mssql_free_result($result);
+                      mssql_close($link);
+                    }
+                  ?>
                 </div>
               </div>
             </div><!--/span-->
@@ -150,41 +223,6 @@
             </div><!--/span-->
           </div><!--/row-->
 
-          <div class="row-fluid">
-            <div class="span6 bgcolor">
-              <div class="control-group">
-                <label class="control-label" for="ezeproducts"><b>ECI Product Offerings:</b></label>
-                <div class="controls">
-                    <?php
-                    if(isset($_GET['gpid'])){
-                      $server = 'CONNECTDB';
-
-                      // Connect to MSSQL
-                      $link = mssql_connect($server, "splareporting", "splareporting");
-
-                      //Select the database
-                      if (!$link || !mssql_select_db('ECI_SB', $link)) {
-                          die('Unable to connect or select database!');
-                      }
-                      $gpid = $_GET['gpid'];
-                      $query1 = "SELECT Product from CLOUD_ContractedTiles WHERE gpid = '$gpid'";
-                      $result = mssql_query($query1) or die ('Unable to run query');
-                      while($row = mssql_fetch_array($result)) {
-                        echo "<p>";
-                        echo  $row[0];
-                        echo "</p>";
-                        echo "<input type=\"hidden\" value=\"$row[0]\" name=\"ezeproducts\">";
-                      }
-                      mssql_free_result($result);
-                      mssql_close($link);
-                    }
-                    ?>
-                </div>
-              </div>
-            </div><!--/span-->
-          </div><!--/row-->
-          
-
           <fieldset>
             <table id="dataTable" class="table">
               <thead>
@@ -199,19 +237,53 @@
                 <td><input name="chk[]" type="checkbox"></td>
                 <td>
                   <select name="products[]">
-                    <option value="Exchange Standard">Exchange Standard</option>
-                    <option value="Exchange Enterprise">Exchange Enterprise</option>
-                    <option value="Exchange Enterprise PLUS">Exchange Enterprise PLUS</option>
-                    <option value="SQL Standard">SQL Standard</option>
-                    <option value="SQL Enterprise">SQL Enterprise</option>
-                    <option value="Windows Standard">Windows Standard</option>
-                    <option value="Windows Enterprise">Windows Enterprise</option>
-                    <option value="Forefront Threat Management Gateway Standard">Forefront Threat Management Gateway Standard</option>
-                    <option value="Windows Remote Desktop Services (RDS)">Windows Remote Desktop Services (RDS) FKA Terminal Server</option>
-                    <option value="Office Standard">Office Standard</option>
-                    <option value="Office Professional Plus">Office Professional Plus</option>
-                    <option value="SharePoint Enterprise">SharePoint Enterprise (Requires Standard SharePonint License as well & SQL)</option>
-                    <option value="SharePoint Standard">SharePoint Standard (requires SQL)</option>
+                    <option value="Access 2010">Access 2010</option>
+                    <option value="Access 2013">Access 2013</option>
+                    <option value="Excel 2010">Excel 2010</option>
+                    <option value="Excel 2013">Excel 2013</option>
+                    <option value="InfoPath 2010">InfoPath 2010</option>
+                    <option value="InfoPath 2013">InfoPath 2013</option>
+                    <option value="Lync 2013">Lync 2013</option>
+                    <option value="Office Professional Plus 2010">Office Professional Plus 2010</option>
+                    <option value="Office Professional Plus 2013">Office Professional Plus 2013</option>
+                    <option value="Office Standard 2010">Office Standard 2010</option>
+                    <option value="Office Standard 2013">Office Standard 2013</option>
+                    <option value="OneNote 2010">OneNote 2010</option>
+                    <option value="OneNote 2013">OneNote 2013</option>
+                    <option value="Outlook 2010">Outlook 2010</option>
+                    <option value="Outlook 2013">Outlook 2013</option>
+                    <option value="PowerPoint 2010">PowerPoint 2010</option>
+                    <option value="PowerPoint 2013">PowerPoint 2013</option>
+                    <option value="Project Professional 2010">Project Professional 2010</option>
+                    <option value="Project Professional 2013">Project Professional 2013</option>
+                    <option value="Project Standard 2010">Project Standard 2010 - Project 2010</option>
+                    <option value="Project Standard 2013">Project Standard 2013</option>
+                    <option value="Publisher 2010">Publisher 2010</option>
+                    <option value="Publisher 2013">Publisher 2013</option>
+                    <option value="Word 2010">Word 2010</option>
+                    <option value="Word 2013">Word 2013</option>
+                    <option value="SharePoint Workspace 2010">SharePoint Workspace 2010</option>
+                    <option value="VDA 7 - Windows 7 Enterprise">VDA 7 - Windows 7 Enterprise</option>
+                    <option value="VDA 8 - Windows 8 Enterprise">VDA 8 - Windows 8 Enterprise</option>
+                    <option value="Visio Premium 2010">Visio Premium 2010</option>
+                    <option value="Visio Professional 2010">Visio Professional 2010</option>
+                    <option value="Visio Professional 2013">Visio Professional 2013</option>
+                    <option value="Visio Standard 2010">Visio Standard 2010</option>
+                    <option value="Visio Standard 2013">Visio Standard 2013</option>
+                    <option value="Windows 7 Enterprise">Windows 7 Enterprise</option>
+                    <option value="Windows 7 Professional">Windows 7 Professional</option>
+                    <option value="Windows 8 Enterprise">Windows 8 Enterprise</option>
+                    <option value="Windows 8 Professional">Windows 8 Pro - Windows 8 Professional</option>
+                    <option value="Windows MultiPoint Server Standard 2011">Windows MultiPoint Server Standard 2011</option>
+                    <option value="Windows Server 2012 Essentials">Windows Server 2012 Essentials</option>
+                    <option value="Windows Server Enterprise 2008">Windows Server Enterprise 2008</option>
+                    <option value="Windows Server Enterprise 2008 R2">Windows Server Enterprise 2008 R2</option>
+                    <option value="Windows Server Standard 2008">Windows Server Standard 2008</option>
+                    <option value="Windows Server Standard 2008 R2">Windows Server Standard 2008 R2</option>
+                    <option value="Windows Server Standard 2012">Windows Server Standard 2012</option>
+                    <option value="Windows Web Server 2008">Windows Web Server 2008</option>
+                    <option value="Windows Web Server 2008 R2">Windows Web Server 2008 R2</option>
+                    <option value="Windows Web Server 2008 with Service Pack 2">Windows Web Server 2008 with Service Pack 2</option>
                   </select>
                 </td>
                 <td><input name="qty[]" type="text" autocomplete="on" required></td>

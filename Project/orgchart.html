@@ -1,0 +1,127 @@
+<html>
+  <head>
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['orgchart']});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Name');
+        data.addColumn('string', 'Manager');
+        data.addColumn('string', 'ToolTip');
+        data.addRows([
+          
+		  <!-- Tier I
+			[{v:'dandrade', f:'David Andrade<div style="color:red; font-style:italic">Sr. VP Worldwide Service</div>'}, '', 'Sr. VP Worldwide Service'],
+		  
+		  <!-- Tier II
+			[{v:'sreardon', f:'Scott Reardon<div style="color:red; font-style:italic">Director</div>'}, 'dandrade', 'Director of Global Technology Services'],
+          
+		  <!-- Tier III
+			[{v:'dsmith', f:'Danny Smith<div style="color:red; font-style:italic">Associate Director BOS</div>'}, 'sreardon', 'Associate Director Boston'],
+			[{v:'AD NY ?', f:'AD NY ?<div style="color:red; font-style:italic">Associate Director NY</div>'}, 'sreardon', 'Associate Director New York'],
+		  
+		  <!-- Tier IV
+			<!-- BOS
+				<!-- BOS CTMs
+					[{v:'CTM BOS Team A', f:'CTM BOS Team A<div style="color:red; font-style:italic">CTM BOS Team A</div>'}, 'dsmith', 'Client Technology Manager - Boston Team A'],
+					[{v:'cleonard', f:'Chris Leonard<div style="color:red; font-style:italic">CTM BOS Team B</div>'}, 'dsmith', 'Client Technology Manager - Boston Team B'],
+		  
+			<!-- NY
+				<!-- NY CTMs
+					[{v:'CTM NY Team A', f:'CTM NY Team A<div style="color:red; font-style:italic">CTM NY Team A</div>'}, 'AD NY ?', 'Client Technology Manager - New York Team A'],
+					[{v:'jlisnak', f:'Jason Lisnak<div style="color:red; font-style:italic">CTM NY Team B</div>'}, 'AD NY ?', 'Client Technology Manager - New York Team B'],
+					[{v:'amilano', f:'Anthony Milano<div style="color:red; font-style:italic">CTM NY Team C</div>'}, 'AD NY ?', 'Client Technology Manager - New York Team C'],
+					[{v:'cgomes', f:'Carlos Gomes<div style="color:red; font-style:italic">CTM NY Team D</div>'}, 'AD NY ?', 'Client Technology Manager - New York Team D'],
+					[{v:'tmcmurry', f:'Travis McMurry<div style="color:red; font-style:italic">CTM NY Team E</div>'}, 'AD NY ?', 'Client Technology Manager - New York Team E'],
+					[{v:'rjusay', f:'Roberto Jusay<div style="color:red; font-style:italic">CTM NY Team F</div>'}, 'AD NY ?', 'Client Technology Manager - New York Team F'],
+					[{v:'amoquit', f:'Adnan Moquit<div style="color:red; font-style:italic">CTM NY Team G</div>'}, 'AD NY ?', 'Client Technology Manager - New York Team G'],
+					[{v:'jtwardos', f:'John Twardos<div style="color:red; font-style:italic">CTM NY Team H</div>'}, 'AD NY ?', 'Client Technology Manager - New York Team H'],
+					[{v:'adaysudov', f:'Alex Daysudov<div style="color:red; font-style:italic">CTM NY Team Seneca</div>'}, 'AD NY ?', 'Client Technology Manager - New York Team Seneca'],
+				
+				<!-- NY Other
+					['Frank Prestifilippo', 'AD NY ?', 'Full Time Engineer'],
+				
+		<!-- Tier V
+			<!-- Boston
+				<!-- Boston Team A
+						[{v:'smontecalvo', f:'Steve Montecalvo<div style="color:red; font-style:italic">Sr. Engineer - Boston Team A</div>'}, 'CTM BOS Team A', 'Senior Engineer - Boston Team A'],
+				
+			<!-- New York
+				<!-- New York Team A
+						[{v:'aashfaq', f:'Adeel Ashfaq<div style="color:red; font-style:italic">Sr. Engineer - New York Team A</div>'}, 'CTM NY Team A', 'Senior Engineer - New York Team A'],		  
+						['Damian Villanueva', 'CTM NY Team A', 'Field Engineer'],
+						['Brian Quinones', 'CTM NY Team A', 'Field Engineer'],
+						['Tom Valerio', 'CTM NY Team A', 'Field Engineer'],
+						['Chet Singh', 'CTM NY Team A', 'Field Engineer'],
+						['Chris Calise', 'CTM NY Team A', 'Full Time Engineer'],
+						['Anthony Sanzone', 'CTM NY Team A', 'Full Time Engineer'],
+						['Luis Lopez', 'CTM NY Team A', 'Full Time Engineer'],
+				
+					<!-- New York Team B
+						[{v:'jbennett', f:'James Bennett<div style="color:red; font-style:italic">Sr. Engineer - New York Team B</div>'}, 'jlisnak', 'Senior Engineer - New York Team B'],
+						['Alex Corelis', 'jlisnak', 'Field Engineer'],
+						['Kenny Wang', 'jlisnak', 'Full Time Engineer'],
+		  
+					<!-- New York Team C
+						[{v:'bnabel', f:'Ben Nabel<div style="color:red; font-style:italic">Sr. Engineer - New York Team C</div>'}, 'amilano', 'Senior Engineer - New York Team C'],		  
+						['Jeremiah Campbell', 'amilano', 'Field Engineer'],
+						['Stephen McKay', 'amilano', 'Field Engineer'],
+						['Jeremiah Campbell', 'amilano', 'Field Engineer'],
+						['Hardeo Balram', 'amilano', 'Field Engineer'],
+						['Wilson Areas', 'amilano', 'Full Time Engineer'],
+					
+					<!-- New York Team D
+						[{v:'exavier', f:'Earl Xavier<div style="color:red; font-style:italic">Sr. Engineer - New York Team D</div>'}, 'cgomes', 'Senior Engineer - New York Team D'],
+						['Nick Wong', 'cgomes', 'Field Engineer'],
+						['Steve Poncel', 'cgomes', 'Field Engineer'],
+						['Elroy Jain', 'cgomes', 'Field Engineer'],
+						['Allen Mui', 'cgomes', 'Field Engineer'],
+						['William Washington', 'cgomes', 'Full Time Engineer'],
+					
+					<!-- New York Team E
+						[{v:'gakiva', f:'Guy Akiva<div style="color:red; font-style:italic">Sr. Engineer - New York Team E</div>'}, 'tmcmurry', 'Senior Engineer - New York Team E'],
+						['Pawel Garbarczyk', 'tmcmurry', 'Field Engineer'],
+						['Mike Willency', 'tmcmurry', 'Field Engineer'],
+						['Israel Zelekovitz', 'tmcmurry', 'Field Engineer'],
+						['Damian Francis', 'tmcmurry', 'Field Engineer'],
+					
+					<!-- New York Team F
+						[{v:'kkojouri', f:'Kamyar Kojouri<div style="color:red; font-style:italic">Sr. Engineer - New York Team E</div>'}, 'rjusay', 'Senior Engineer - New York Team F'],
+						['Ramon Guzmon', 'rjusay', 'Field Engineer'],
+						['Ed Delahunt', 'rjusay', 'Field Engineer'],
+						['Michael Falzon', 'rjusay', 'Field Engineer'],
+						['Harry Weinstein', 'rjusay', 'Field Engineer'],
+						['Darrin Towne', 'rjusay', 'Full Time Engineer'],
+						['Anton Ossipenkov', 'rjusay', 'Full Time Engineer'],
+						['Mike Varis', 'rjusay', 'Full Time Engineer'],
+					
+					<!-- New York Team G
+						['Greg Kurnicki', 'amoquit', 'Field Engineer'],
+						['Nicholas Tripp', 'amoquit', 'Field Engineer'],
+						['Nishant King', 'amoquit', 'Field Engineer'],
+						['Andy Goss', 'amoquit', 'Field Engineer'],
+		  		  
+					<!-- New York Team H
+						['Enoch Whitfield', 'jtwardos', 'Field Engineer'],
+						['Iqbal Chaklader', 'jtwardos', 'Field Engineer'],
+						['Michael Falzon', 'rjusay', 'Field Engineer'],
+						['Vadim Sudovtez', 'jtwardos', 'Full Time Engineer'],
+					
+					<!-- New York Team Seneca
+						['Benoit Chu', 'adaysudov', 'Full Time Engineer'],
+		  
+		  
+		  ['Bob', 'dsmith', 'Bob Sponge'],
+		  ['AD NY ?', 'Bob', '']
+        ]);
+        var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
+        chart.draw(data, {allowHtml:true});
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id='chart_div'></div>
+  </body>
+</html>
