@@ -38,15 +38,12 @@
           <div class="container-fluid">
             <a class="brand" herf="/">Home</a>
             <ul class="nav">
-              <li><a href="/project/emsform.html">EMS Setup Form</a></li>
-              <li><a href="/project/ipsheet.html">IP Sheet Generator</a></li>
-              <li><a href="/project/uds.html">Universal Design Sheet</a></li>
               <li class="dropdown" id="accountmenu">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">ECI Cloud Product Checkout<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/ecicloud/ecicloud1.php">Form</a></li>
+                    <li class="active"><a href="/ecicloud/index.php">Form</a></li>
                     <li class="divider"></li>
-                    <li class="active"><a href="/ecicloud/ecicloud-report.php">Report</a></li>
+                    <li><a href="/ecicloud/ecicloud-report.php">Report</a></li>
                 </ul>
               </li>
             </ul>
@@ -142,18 +139,18 @@
           }
           // If the user didn't select anything
           if ($gpid == "" AND $eciproducts =="") {
-            $query1 = "SELECT DISTINCT gpid, productId, product, SerialNumber, qty 
+            $query1 = "SELECT DISTINCT gpid, product, IngramSKU, PartNumber, qty, chkDate, submitter 
                         FROM CLOUD_splaclient, CLOUD_splaproducts, CLOUD_splacheckout
                         WHERE CLOUD_splaclient.clientId = CLOUD_splacheckout.clientId
-                        AND CLOUD_splacheckout.checkoutId = CLOUD_splaproducts.checkoutId;";
+                        AND CLOUD_splacheckout.productId = CLOUD_splaproducts.productId;";
             $result = mssql_query($query1, $link) or die ('Unable to run query');
           }
           // If the user selected gpid
           if ($gpid != ""){
-            $query1 = "SELECT DISTINCT gpid, productId, product, SerialNumber, qty 
+            $query1 = "SELECT DISTINCT gpid, product, IngramSKU, PartNumber, qty, chkDate, submitter 
                         FROM CLOUD_splaclient, CLOUD_splaproducts, CLOUD_splacheckout
                         WHERE gpid = '$gpid' AND CLOUD_splaclient.clientId = CLOUD_splacheckout.clientId
-                        AND CLOUD_splacheckout.checkoutId = CLOUD_splaproducts.checkoutId;";
+                        AND CLOUD_splacheckout.productId = CLOUD_splaproducts.productId;";
             $result = mssql_query($query1, $link);
           }
 
@@ -164,10 +161,13 @@
             echo "<thead>";
             echo "<tr>";
             echo "<td> <b>GPID</b> </td>";
-            echo "<td> <b>Eze Products</b> </td>";
+            echo "<td> <b>Eze Product</b> </td>";
             echo "<td> <b>Other Products</b> </td>";
-            echo "<td> <b>Serial Number</b> </td>";
+            echo "<td> <b>Part Number</td>";
+            echo "<td> <b>IngramSKU</b> </td>";
             echo "<td> <b>Quantity</td>";
+            echo "<td> <b>Checkout Date</td>";
+            echo "<td> <b>Submitter</td>";
             echo "</tr>";
             echo "</thead>";
             echo "<tbody>";
@@ -179,9 +179,12 @@
               while($row3 = mssql_fetch_array($result3)) {
                 echo  "<td>"  . $row3[0]  .   "</td>";
               }
+              echo "<td>"   .   $row[1]   .   "</td>";
               echo "<td>"   .   $row[2]   .   "</td>";
               echo "<td>"   .   $row[3]   .   "</td>";
               echo "<td>"   .   $row[4]   .   "</td>";
+              echo "<td>"   .   $row[5]   .   "</td>";
+              echo "<td>"   .   $row[6]   .   "</td>";
               echo "</tr>";
             }
 
@@ -203,26 +206,32 @@
             echo "<thead>";
             echo "<tr>";
             echo "<td> <b>GPID</b> </td>";
-            echo "<td> <b>Eze Products</b> </td>";
+            echo "<td> <b>Eze Product</b> </td>";
             echo "<td> <b>Other Products</b> </td>";
-            echo "<td> <b>Serial Number</b> </td>";
+            echo "<td> <b>Part Number</td>";
+            echo "<td> <b>IngramSKU</b> </td>";
             echo "<td> <b>Quantity</td>";
+            echo "<td> <b>Checkout Date</td>";
+            echo "<td> <b>Submitter</td>";
             echo "</tr>";
             echo "</thead>";
             echo "<tbody>";
             while($row = mssql_fetch_array($result)) {
-              $query1 = "SELECT DISTINCT gpid, productId, product, SerialNumber, qty 
-                          FROM CLOUD_splaclient, CLOUD_splaproducts, CLOUD_splacheckout
-                          WHERE gpid = '$row[0]' AND CLOUD_splaclient.clientId = CLOUD_splacheckout.clientId
-                          AND CLOUD_splacheckout.checkoutId = CLOUD_splaproducts.checkoutId";
+              $query1 = "SELECT DISTINCT gpid, product, IngramSKU, PartNumber, qty, chkDate, submitter 
+                        FROM CLOUD_splaclient, CLOUD_splaproducts, CLOUD_splacheckout
+                        WHERE gpid = '$row[0]' AND CLOUD_splaclient.clientId = CLOUD_splacheckout.clientId
+                        AND CLOUD_splacheckout.productId = CLOUD_splaproducts.productId;";
               $result1 = mssql_query($query1, $link);
               while($row1 = mssql_fetch_array($result1)){
                 echo "<tr>";
                 echo "<td>"   .   $row1[0]   .   "</td>";
                 echo "<td>"   .   $eciproducts  . "</td>";
+                echo "<td>"   .   $row1[1]   .   "</td>";
                 echo "<td>"   .   $row1[2]   .   "</td>";
                 echo "<td>"   .   $row1[3]   .   "</td>";
                 echo "<td>"   .   $row1[4]   .   "</td>";
+                echo "<td>"   .   $row1[5]   .   "</td>";
+                echo "<td>"   .   $row1[6]   .   "</td>";
                 echo "</tr>";
               }
             }

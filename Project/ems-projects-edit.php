@@ -106,8 +106,7 @@ header("location:login.html");
         </div>
 
         <?php
-        require_once 'mail.php';
-        ini_set("SMTP","alertmx.eci.com");
+        
 
         if( isset($_POST['client'])) {
 

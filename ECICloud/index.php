@@ -28,7 +28,7 @@
       {   
       var gpid;  
       gpid = f.gpid.options[f.gpid.selectedIndex].value; 
-      location.replace( 'ecicloud1.php?gpid='+ gpid );
+      location.replace( 'index.php?gpid='+ gpid );
       }   
     </script>
     <script type="text/javascript">
@@ -44,13 +44,10 @@
           <div class="container-fluid">
             <a class="brand" herf="/">Home</a>
             <ul class="nav">
-              <li><a href="/project/emsform.html">EMS Setup Form</a></li>
-              <li><a href="/project/ipsheet.html">IP Sheet Generator</a></li>
-              <li><a href="/project/uds.html">Universal Design Sheet</a></li>
               <li class="dropdown" id="accountmenu">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">ECI Cloud Product Checkout<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li class="active"><a href="/ecicloud/ecicloud1.php">Form</a></li>
+                    <li class="active"><a href="/ecicloud/index.php">Form</a></li>
                     <li class="divider"></li>
                     <li><a href="/ecicloud/ecicloud-report.php">Report</a></li>
                 </ul>
@@ -237,53 +234,26 @@
                 <td><input name="chk[]" type="checkbox"></td>
                 <td>
                   <select name="products[]">
-                    <option value="Access 2010">Access 2010</option>
-                    <option value="Access 2013">Access 2013</option>
-                    <option value="Excel 2010">Excel 2010</option>
-                    <option value="Excel 2013">Excel 2013</option>
-                    <option value="InfoPath 2010">InfoPath 2010</option>
-                    <option value="InfoPath 2013">InfoPath 2013</option>
-                    <option value="Lync 2013">Lync 2013</option>
-                    <option value="Office Professional Plus 2010">Office Professional Plus 2010</option>
-                    <option value="Office Professional Plus 2013">Office Professional Plus 2013</option>
-                    <option value="Office Standard 2010">Office Standard 2010</option>
-                    <option value="Office Standard 2013">Office Standard 2013</option>
-                    <option value="OneNote 2010">OneNote 2010</option>
-                    <option value="OneNote 2013">OneNote 2013</option>
-                    <option value="Outlook 2010">Outlook 2010</option>
-                    <option value="Outlook 2013">Outlook 2013</option>
-                    <option value="PowerPoint 2010">PowerPoint 2010</option>
-                    <option value="PowerPoint 2013">PowerPoint 2013</option>
-                    <option value="Project Professional 2010">Project Professional 2010</option>
-                    <option value="Project Professional 2013">Project Professional 2013</option>
-                    <option value="Project Standard 2010">Project Standard 2010 - Project 2010</option>
-                    <option value="Project Standard 2013">Project Standard 2013</option>
-                    <option value="Publisher 2010">Publisher 2010</option>
-                    <option value="Publisher 2013">Publisher 2013</option>
-                    <option value="Word 2010">Word 2010</option>
-                    <option value="Word 2013">Word 2013</option>
-                    <option value="SharePoint Workspace 2010">SharePoint Workspace 2010</option>
-                    <option value="VDA 7 - Windows 7 Enterprise">VDA 7 - Windows 7 Enterprise</option>
-                    <option value="VDA 8 - Windows 8 Enterprise">VDA 8 - Windows 8 Enterprise</option>
-                    <option value="Visio Premium 2010">Visio Premium 2010</option>
-                    <option value="Visio Professional 2010">Visio Professional 2010</option>
-                    <option value="Visio Professional 2013">Visio Professional 2013</option>
-                    <option value="Visio Standard 2010">Visio Standard 2010</option>
-                    <option value="Visio Standard 2013">Visio Standard 2013</option>
-                    <option value="Windows 7 Enterprise">Windows 7 Enterprise</option>
-                    <option value="Windows 7 Professional">Windows 7 Professional</option>
-                    <option value="Windows 8 Enterprise">Windows 8 Enterprise</option>
-                    <option value="Windows 8 Professional">Windows 8 Pro - Windows 8 Professional</option>
-                    <option value="Windows MultiPoint Server Standard 2011">Windows MultiPoint Server Standard 2011</option>
-                    <option value="Windows Server 2012 Essentials">Windows Server 2012 Essentials</option>
-                    <option value="Windows Server Enterprise 2008">Windows Server Enterprise 2008</option>
-                    <option value="Windows Server Enterprise 2008 R2">Windows Server Enterprise 2008 R2</option>
-                    <option value="Windows Server Standard 2008">Windows Server Standard 2008</option>
-                    <option value="Windows Server Standard 2008 R2">Windows Server Standard 2008 R2</option>
-                    <option value="Windows Server Standard 2012">Windows Server Standard 2012</option>
-                    <option value="Windows Web Server 2008">Windows Web Server 2008</option>
-                    <option value="Windows Web Server 2008 R2">Windows Web Server 2008 R2</option>
-                    <option value="Windows Web Server 2008 with Service Pack 2">Windows Web Server 2008 with Service Pack 2</option>
+                    <?php
+                      $server = 'CONNECTDB';
+
+                      // Connect to MSSQL
+                      $link = mssql_connect($server, "splareporting", "splareporting");
+
+                      //Select the database
+                      if (!$link || !mssql_select_db('ECI_SB', $link)) {
+                          die('Unable to connect or select database!');
+                      }
+                      $query1 = "SELECT product FROM CLOUD_splaproducts";
+                      $result = mssql_query($query1) or die ('Unable to run query');
+                      while($row = mssql_fetch_array($result)) {
+                        ?>
+                          <option value="<?php echo $row[0];?>"><?php echo $row[0];?></option>
+                        <?php
+                      }
+                      mssql_free_result($result);
+                      mssql_close($link);
+                  ?>
                   </select>
                 </td>
                 <td><input name="qty[]" type="text" autocomplete="on" required></td>

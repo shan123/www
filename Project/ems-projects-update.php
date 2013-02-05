@@ -45,15 +45,14 @@ mssql_query($query) or die("Can't update the row");
 
 $head = array(
        'to'      =>array('aashfaq@eci.com'=>'Adeel Ashfaq'),
- 	   'cc'		 =>array('hkhan@eci.com'=>'Haani Khan'),
+ 	   'cc'		 =>array('wercolano@eci.com'=>'William Ercolano'),	
+ 	   'bcc'	 =>array('hkhan@eci.com'=>'Haani Khan'),
        'from'    =>array('aashfaq@eci.com' =>'Adeel Ashfaq'),
        );
 $subject = " EMS Project Request Update- ". $client;
 $body ='';
 $body.="<div style='font-family:Arial;font-size:10pt;'>";
-$body.=    "<br>"."Yo,";
-$body.=    "<br>"."";
-$body.=    "<br>"."The project information has been updated by ". $_SESSION['username']. ".Please check below:";
+$body.=    "<br>"."The project information has been updated by <b>". $_SESSION['username']. "</b>.  Please check below:";
 $body.=    "<br>"."";
 $body.=    "<br><b>"."Client Name:</b> " . $client;
 $body.=    "<br><b>"."Region:</b> " . $region;

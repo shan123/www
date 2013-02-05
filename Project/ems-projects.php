@@ -34,15 +34,15 @@ $time_in_12_hour_format  = DATE("g:i a", STRTOTIME($starttime));
 
 $head = array(
        'to'      =>array('aashfaq@eci.com'=>'Adeel Ashfaq'),
- 	   'cc'		 =>array('hkhan@eci.com'=>'Haani Khan'),
+       'cc'		 =>array('wercolano@eci.com'=>'William Ercolano'),	
+ 	   'bcc'	 =>array('hkhan@eci.com'=>'Haani Khan'),
        'from'    =>array('aashfaq@eci.com' =>'Adeel Ashfaq'),
        );
 $subject = " EMS Project Request - ". $client;
 $body ='';
 $body.="<div style='font-family:Arial;font-size:10pt;'>";
-$body.=    "<br>"."Yo,";
+$body.=    "<br>"."<b>New Client Setup</b>";
 $body.=    "<br>"."";
-$body.=    "<br>"."Please check below:";
 $body.=    "<br>"."";
 $body.=    "<br><b>"."Client Name:</b> " . $client;
 $body.=    "<br><b>"."Region:</b> " . $region;

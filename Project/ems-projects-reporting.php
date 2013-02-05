@@ -96,6 +96,15 @@ header("location:login.html");
                       </div>
                     </div>
                   </div><!--/span-->
+
+                  <div class="span4 bgcolor">
+                    <div class="control-group">
+                      <label class="control-label" for="date"><b>Search by Date:</b></label>
+                      <div class="controls">
+                        <input type="text" name="date" placeholder="01/25/2013">
+                      </div>
+                    </div>
+                  </div><!--/span-->
                 </div><!--/row-->
                 </div><!--/row--> 
               </div>
@@ -110,6 +119,7 @@ header("location:login.html");
         if( isset($_POST['client'])) {
 
           $client = $_POST['client'];
+          $date = $_POST['date'];
 
 
           $server = 'AASHFAQ3500\SQLEXPRESS';
@@ -122,12 +132,16 @@ header("location:login.html");
               die('Unable to connect or select database!');
           }
 
-          if ($client == ""){
-            $query1 = "SELECT * FROM CLOUD_splaemsprojects;";
+          if ($client == "" && $date == ""){
+            $query1 = "SELECT * FROM CLOUD_splaemsprojects ORDER BY projectdate ASC;";
             $result = mssql_query($query1, $link) or die ('Unable to run query');
           }
           if ($client != ""){
             $query1 = "SELECT * FROM CLOUD_splaemsprojects WHERE client = '$client';";
+            $result = mssql_query($query1, $link) or die ('Unable to run query');
+          }
+          if ($date != ""){
+            $query1 = "SELECT * FROM CLOUD_splaemsprojects WHERE projectdate = '$date';";
             $result = mssql_query($query1, $link) or die ('Unable to run query');
           }
 
